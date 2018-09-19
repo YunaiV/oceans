@@ -4,6 +4,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
@@ -24,6 +25,21 @@ public class OAuth2ResourceConfiguration extends ResourceServerConfigurerAdapter
 //                .authorizeRequests().anyRequest().permitAll();
 //        // @formatter:on
 //    }
+
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .antMatchers("/passport/**").permitAll()
+//                .antMatchers("/oauth/token/revokeById/**").permitAll()
+//                .antMatchers("/tokens/**").permitAll()
+//                .antMatchers("/oauth/**").permitAll()
+                .anyRequest().authenticated()
+//                .and().formLogin().permitAll()
+                .and().csrf().disable();
+        // @formatter:on
+    }
 
     @Primary
     @Bean
