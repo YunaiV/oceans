@@ -2,8 +2,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.16.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <spring-cloud-core.version>1.3.4.RELEASE</spring-cloud-core.version>
+        <curator.version>2.11.0</curator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-zookeeper-dependencies</artifactId>
+                <version>1.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- spring cloud core begin -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-commons</artifactId>
+                <version>${spring-cloud-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-context</artifactId>
+                <version>${spring-cloud-core.version}</version>
+            </dependency>
+            <!-- spring cloud core end   -->
+
+            <dependency>
+                <groupId>org.apache.curator</groupId> <!-- zk工具类 -->
+                <artifactId>curator-x-discovery</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <modelVersion>4.0.0</modelVersion>
     <groupId>cn.iocoder.oceans</groupId>
     <artifactId>oceans-parent</artifactId>
     <packaging>pom</packaging>
@@ -11,8 +55,9 @@
     <description>海洋，一望无际</description>
     <modules>
         <module>user</module>
-        <module>dashboard-api</module>
         <module>bff</module>
     </modules>
+
+
 
 </project>
