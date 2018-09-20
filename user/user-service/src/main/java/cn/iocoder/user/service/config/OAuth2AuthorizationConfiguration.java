@@ -1,5 +1,6 @@
 package cn.iocoder.user.service.config;
 
+import cn.iocoder.user.service.base.AuthorizationExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,8 @@ public class OAuth2AuthorizationConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore()) // 设置 tokenStore
-                .authenticationManager(authenticationManager); // 设置 authenticationManager
+                .authenticationManager(authenticationManager) // 设置 authenticationManager
+                .exceptionTranslator(new AuthorizationExceptionTranslator()); // 自定义 Exception 转换器
     }
 
     @Override
