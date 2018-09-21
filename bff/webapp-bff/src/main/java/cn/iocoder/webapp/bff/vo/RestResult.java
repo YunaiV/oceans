@@ -1,4 +1,4 @@
-package cn.iocoder.webapp.bff.config;
+package cn.iocoder.webapp.bff.vo;
 
 import lombok.Data;
 
@@ -13,6 +13,13 @@ public class RestResult {
         RestResult result = new RestResult();
         result.code = code;
         result.message = message;
+        return result;
+    }
+
+    public static RestResult ok(Object data) {
+        RestResult result = new RestResult();
+        result.code = 0;
+        result.data = data;
         return result;
     }
 

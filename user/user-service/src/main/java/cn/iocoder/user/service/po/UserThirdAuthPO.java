@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode
-public class UserThirdAuth {
+public class UserThirdAuthPO {
 
     /**
      * 用户编号

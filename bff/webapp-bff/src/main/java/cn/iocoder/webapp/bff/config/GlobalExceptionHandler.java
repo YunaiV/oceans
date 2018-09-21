@@ -1,6 +1,7 @@
 package cn.iocoder.webapp.bff.config;
 
 import cn.iocoder.occeans.core.exception.ServiceException;
+import cn.iocoder.webapp.bff.vo.RestResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

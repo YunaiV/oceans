@@ -2,6 +2,7 @@ package cn.iocoder.webapp.bff.controller.passport;
 
 import cn.iocoder.user.api.OAuth2Service;
 import com.alibaba.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
@@ -10,12 +11,17 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 
 public class RemoteTokenServices implements ResourceServerTokenServices {
 
+    @Value("${security.oauth2.client.id}")
+    private String clientId;
+    @Value("${security.oauth2.client.client-secret}")
+    private String clientSecret;
+
     @Reference
     private OAuth2Service oauth2Service;
 
     @Override
     public OAuth2Authentication loadAuthentication(String accessToken) throws AuthenticationException, InvalidTokenException {
-        return oauth2Service.checkToken("fooClientIdPassword", "secret", accessToken);
+        return oauth2Service.checkToken(clientId, clientSecret, accessToken);
         // TODO 芋艿，需要考虑下，是否可以去掉
 //        if (map.containsKey("error")) {
 //            // TODO 打印错误日志

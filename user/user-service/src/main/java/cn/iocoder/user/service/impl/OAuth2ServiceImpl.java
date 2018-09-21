@@ -3,6 +3,8 @@ package cn.iocoder.user.service.impl;
 import cn.iocoder.occeans.core.exception.ServiceException;
 import cn.iocoder.user.api.OAuth2Service;
 import cn.iocoder.user.api.constants.ErrorCodeConstants;
+import cn.iocoder.user.api.dto.OAuth2AccessTokenDTO;
+import cn.iocoder.user.api.dto.OAuth2AuthenticationDTO;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -74,7 +76,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
         // 执行请求
         // TODO 芋艿，需要重构下
         Map<String, ?> map = restTemplate.exchange("http://127.0.0.1:8081/oauth/check_token", HttpMethod.POST,
-                new HttpEntity<MultiValueMap<String, String>>(formData, headers), Map.class).getBody();
+                new HttpEntity<>(formData, headers), Map.class).getBody();
         // 校验响应结果
         throwsServiceExceptionIfError(map);
         // 转换
@@ -141,6 +143,17 @@ public class OAuth2ServiceImpl implements OAuth2Service {
         }
         // 抛出异常
         throw ex;
+    }
+
+
+    @Override
+    public OAuth2AccessTokenDTO getAccessToken(String mobile, String code) {
+        return null;
+    }
+
+    @Override
+    public OAuth2AuthenticationDTO checkToken(String accessToken) throws ServiceException {
+        return null;
     }
 
 }
