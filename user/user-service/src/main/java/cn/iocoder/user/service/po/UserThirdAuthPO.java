@@ -1,16 +1,13 @@
 package cn.iocoder.user.service.po;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import cn.iocoder.occeans.core.po.BasePO;
 
 import java.util.Date;
 
 /**
  * 用户三方开放平台授权，例如：QQ / 微博 / 微信等等。
  */
-@Data
-@EqualsAndHashCode
-public class UserThirdAuthPO {
+public class UserThirdAuthPO extends BasePO {
 
     /**
      * 用户编号

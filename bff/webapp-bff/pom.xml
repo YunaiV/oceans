@@ -53,14 +53,7 @@
             <artifactId>spring-jdbc</artifactId>
         </dependency>
 
-        <!-- oauth -->
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-        </dependency>
-
         <!-- test -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

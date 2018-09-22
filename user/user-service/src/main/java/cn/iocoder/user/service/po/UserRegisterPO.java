@@ -5,21 +5,19 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 用户实体，存储用户基本数据。
- *
- * idx_mobile 唯一索引
+ * 用户注册信息
  */
 @Data
 @Accessors(chain = true)
-public class UserPO extends BasePO {
+public class UserRegisterPO extends BasePO {
 
     /**
      * 用户编号
      */
     private Long uid;
-    /**
-     * 手机号
-     */
-    private String mobile;
+
+    // TODO 芋艿 ip
+    // TODO 芋艿 ua
+    // TODO 芋艿 方式，手机注册、qq 等等
 
 }

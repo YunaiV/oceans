@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iocoder.user.service.dao.OAuth2AccessTokenMapper">
+
+    <insert id="insert" parameterType="OAuth2AccessTokenPO">
+        INSERT INTO oauth2_access_token (
+          token_id, refresh_token, uid, valid, expires_time,
+          create_time
+        ) VALUES (
+          #{tokenId}, #{refreshToken}, #{uid}, #{valid}, #{expiresTime},
+           #{createTime}
+        )
+    </insert>
+
+    <select id="selectByTokenId" parameterType="String" resultType="OAuth2AccessTokenPO">
+        SELECT
+          uid, valid, expires_time
+        FROM oauth2_access_token
+        WHERE token_id = #{tokenId}
+    </select>
+
+</mapper>

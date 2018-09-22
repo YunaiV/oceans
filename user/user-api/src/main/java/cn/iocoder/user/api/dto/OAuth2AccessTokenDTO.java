@@ -1,9 +1,13 @@
 package cn.iocoder.user.api.dto;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 @Data
-public class OAuth2AccessTokenDTO {
+@Accessors(chain = true)
+public class OAuth2AccessTokenDTO implements Serializable {
 
     /**
      * 访问令牌

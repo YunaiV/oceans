@@ -20,11 +20,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>cn.iocoder.oceans</groupId>
             <artifactId>core</artifactId>
             <version>1.0-SNAPSHOT</version>

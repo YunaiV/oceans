@@ -51,4 +51,15 @@ public class ErrorCodeConstants {
     public static final String UNSUPPORTED_RESPONSE_TYPE ="unsupported_response_type";
     public static final String ACCESS_DENIED = "access_denied";
 
+    // ========== 用户模块 ==========
+
+    /**
+     * USER 模块 — 手机号未注册用户
+     */
+    public static final int USER_MOBILE_NOT_REGISTERED = 1001002000;
+    /**
+     * USER 模块 — 手机号已经注册用户
+     */
+    public static final int USER_MOBILE_AREADY_REGISTERED = 1001002001;
+
 }
