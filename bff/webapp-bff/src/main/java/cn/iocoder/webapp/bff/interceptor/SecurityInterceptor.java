@@ -1,8 +1,8 @@
 package cn.iocoder.webapp.bff.interceptor;
 
 import cn.iocoder.occeans.core.exception.ServiceException;
-import cn.iocoder.user.api.OAuth2Service;
-import cn.iocoder.user.api.dto.OAuth2AuthenticationDTO;
+import cn.iocoder.oceans.user.api.OAuth2Service;
+import cn.iocoder.oceans.user.api.dto.OAuth2AuthenticationDTO;
 import cn.iocoder.webapp.bff.annotation.PermitAll;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;

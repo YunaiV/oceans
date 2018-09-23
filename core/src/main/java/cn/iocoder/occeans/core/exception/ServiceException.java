@@ -1,7 +1,7 @@
 package cn.iocoder.occeans.core.exception;
 
 /**
- * 业务异常
+ * 服务异常
  */
 public class ServiceException extends RuntimeException {
 

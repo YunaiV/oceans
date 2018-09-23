@@ -1,11 +1,11 @@
 package cn.iocoder.webapp.bff.controller.passport;
 
 import cn.iocoder.occeans.core.exception.ServiceException;
-import cn.iocoder.user.api.MobileCodeService;
-import cn.iocoder.user.api.OAuth2Service;
-import cn.iocoder.user.api.UserService;
-import cn.iocoder.user.api.constants.ErrorCodeConstants;
-import cn.iocoder.user.api.dto.OAuth2AccessTokenDTO;
+import cn.iocoder.oceans.user.api.MobileCodeService;
+import cn.iocoder.oceans.user.api.OAuth2Service;
+import cn.iocoder.oceans.user.api.UserService;
+import cn.iocoder.oceans.user.api.constants.ErrorCodeConstants;
+import cn.iocoder.oceans.user.api.dto.OAuth2AccessTokenDTO;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +53,7 @@ public class PassportController {
         try {
             userService.createUser(mobile, code);
         } catch (ServiceException serviceException) {
-            if (!serviceException.getCode().equals(ErrorCodeConstants.USER_MOBILE_AREADY_REGISTERED)) { // 如果是已注册异常，忽略。下面再次发起授权
+            if (!serviceException.getCode().equals(ErrorCodeConstants.USER_MOBILE_ALREADY_REGISTERED)) { // 如果是已注册异常，忽略。下面再次发起授权
                 throw serviceException;
             }
         }
