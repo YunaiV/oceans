@@ -10,7 +10,7 @@ import org.springframework.context.event.EventListener;
 public class ServiceExceptionConfiguration {
 
     @EventListener(ApplicationReadyEvent.class) // 可参考 https://www.cnblogs.com/ssslinppp/p/7607509.html
-    public void doSomethingAfterStartup() {
+    public void initMessages() {
 //        从 service_exception_message.properties 加载错误码的方案
 //        Properties properties;
 //        try {

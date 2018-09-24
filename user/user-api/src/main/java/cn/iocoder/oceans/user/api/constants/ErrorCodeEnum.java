@@ -7,58 +7,28 @@ package cn.iocoder.oceans.user.api.constants;
  */
 public enum ErrorCodeEnum {
 
-
+    // ========== OAUTH2 模块 ==========
+    OAUTH2_UNKNOWN(1001001000, "未知错误"), // 预留
+    OAUTH2_INVALID_GRANT_BAD_CREDENTIALS(1001001001, "密码不正确"), // 暂时没用到
+    OAUTH2_INVALID_GRANT_USERNAME_NOT_FOUND(1001001002, "账号不存在"), // 暂时没用到
+    OAUTH2_INVALID_GRANT(1001001010, ""), // 预留
+    OAUTH_INVALID_TOKEN_NOT_FOUND(1001001011, "访问令牌不存在"),
+    OAUTH_INVALID_TOKEN_EXPIRED(1001001012, "访问令牌已过期"),
+    OAUTH_INVALID_TOKEN_INVALID(1001001013, "访问令牌已失效"),
+    OAUTH_INVALID_TOKEN(1001001020, ""), // 预留
 
     // ========== 用户模块 ==========
     USER_MOBILE_NOT_REGISTERED(1001002000, "手机号未注册用户"),
-    USER_MOBILE_ALREADY_REGISTERED(1001002001, "手机号已经注册用户");
+    USER_MOBILE_ALREADY_REGISTERED(1001002001, "手机号已经注册用户"),
 
     // ========== 手机验证码模块 ==========
-
-
-    // ========== OAUTH2 模块 ==========
-    /**
-     * OAUTH2 模块 - 未知错误
-     */
-    public static final int OAUTH2_UNKNOWN = 1001001000;
-    /**
-     * OAUTH2 模块 - INVALID_GRANT 密码不正确
-     */
-    public static final int OAUTH2_INVALID_GRANT_BAD_CREDENTIALS = 1001001001;
-    /**
-     * OAUTH2 模块 - INVALID_GRANT 账号不存在
-     */
-    public static final int OAUTH2_INVALID_GRANT_USERNAME_NOT_FOUND = 1001001002;
-    /**
-     * OAUTH2 模块 - INVALID_GRANT 其它
-     *
-     * 预留 03-09 给这个
-     */
-    public static final int OAUTH2_INVALID_GRANT = 1001001010;
-    /**
-     * OAUTH2 模块 - INVALID_TOKEN 访问令牌不存在
-     */
-    public static final int OAUTH_INVALID_TOKEN_NOT_FOUND = 1001001011;
-    /**
-     * OAUTH2 模块 - INVALID_TOKEN 访问令牌已过期
-     */
-    public static final int OAUTH_INVALID_TOKEN_EXPIRED = 1001001012;
-    /**
-     * OAUTH2 模块 - INVALID_GRANT 其它
-     *
-     * 预留 13-19 给这个
-     */
-    public static final int OAUTH_INVALID_TOKEN = 1001001020;
-    // TODO 芋艿，剩余的后续翻译
-    public static final String INVALID_REQUEST = "invalid_request";
-    public static final String INVALID_CLIENT = "invalid_client";
-    public static final String UNAUTHORIZED_CLIENT = "unauthorized_client";
-    public static final String UNSUPPORTED_GRANT_TYPE = "unsupported_grant_type";
-    public static final String INVALID_SCOPE = "invalid_scope";
-    public static final String INSUFFICIENT_SCOPE = "insufficient_scope";
-    public static final String REDIRECT_URI_MISMATCH ="redirect_uri_mismatch";
-    public static final String UNSUPPORTED_RESPONSE_TYPE ="unsupported_response_type";
-    public static final String ACCESS_DENIED = "access_denied";
+    MOBILE_CODE_NOT_FOUND(1001003000, "验证码不存在"),
+    MOBILE_CODE_EXPIRED(1001003001, "验证码已过期"),
+    MOBILE_CODE_USED(1001003002, "验证码已使用"),
+    MOBILE_CODE_NOT_CORRECT(1001003003, "验证码不正确"),
+    MOBILE_CODE_EXCEED_SEND_MAXIMUM_QUANTITY_PER_DAY(1001003004, "超过每日短信发送数量"),
+    MOBILE_CODE_SEND_TOO_FAST(1001003005, "短信发送过于频率")
+    ;
 
     private final int code;
     private final String message;

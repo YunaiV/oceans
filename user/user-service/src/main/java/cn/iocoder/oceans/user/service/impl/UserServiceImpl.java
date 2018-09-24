@@ -1,6 +1,5 @@
 package cn.iocoder.oceans.user.service.impl;
 
-import cn.iocoder.occeans.core.exception.ServiceException;
 import cn.iocoder.occeans.core.util.ServiceExceptionUtil;
 import cn.iocoder.oceans.user.api.UserService;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
@@ -15,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
+/**
+ * UserService ，实现和用户信息相关的逻辑
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -34,9 +36,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(String mobile, String code) {
         // TODO 芋艿，校验手机格式
         // 校验手机号的最后一个手机验证码是否有效
-        if (mobileCodeService.validLastMobileCode(mobile, code) == null) {
-            throw new ServiceException(-1, "手机验证码不正确"); // TODO 芋艿
-        }
+        mobileCodeService.validLastMobileCode(mobile, code);
         // 校验用户是否已经存在
         if (getUser(mobile) != null) {
             throw ServiceExceptionUtil.exception(ErrorCodeEnum.USER_MOBILE_ALREADY_REGISTERED.getCode());

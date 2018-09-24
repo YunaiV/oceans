@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentMap;
  * {@link cn.iocoder.occeans.core.exception.ServiceException} 工具类
  *
  * 目的在于，格式化异常信息提示。
+ * 考虑到 String.format 在参数不正确时会报错，因此使用 {} 作为占位符，并使用 {@link #doFormat(int, String, Object...)} 方法来格式化
  *
  * 因为 {@link #messages} 里面默认是没有异常信息提示的模板的，所以需要使用方自己初始化进去。目前想到的有几种方式：
  *
@@ -35,6 +36,16 @@ public class ServiceExceptionUtil {
 
     public static void put(Integer code, String message) {
         ServiceExceptionUtil.messages.put(code, message);
+    }
+
+    /**
+     * 创建指定编号的 ServiceException 的异常
+     *
+     * @param code 编号
+     * @return 异常
+     */
+    public static ServiceException exception(Integer code) {
+        return new ServiceException(code, messages.get(code));
     }
 
     /**

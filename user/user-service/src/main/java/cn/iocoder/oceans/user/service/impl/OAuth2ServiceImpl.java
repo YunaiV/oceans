@@ -14,55 +14,28 @@ import cn.iocoder.oceans.user.service.po.OAuth2RefreshTokenPO;
 import cn.iocoder.oceans.user.service.po.UserPO;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * OAuth2Service ，实现用户授权相关的逻辑
+ */
 @Service
 public class OAuth2ServiceImpl implements OAuth2Service {
 
-    // TODO 芋艿，捉摸有没更好的实现方式
-//    private void throwsServiceExceptionIfError(Map<String, ?> errors) {
-//        String error = (String) errors.get(OAuth2Exception.ERROR);
-//        if (error == null) {
-//            return;
-//        }
-//        String description = (String) errors.get(OAuth2Exception.DESCRIPTION);
-//        OAuth2Exception exception = OAuth2Exception.create(error, description);
-//        ServiceException ex = null;
-//        if (exception instanceof InvalidGrantException) {
-//            switch (description) {
-//                case "Bad credentials": // 来自 DaoAuthenticationProvider 的第 100 行代码
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH2_INVALID_GRANT_BAD_CREDENTIALS, "密码不正确");
-//                    break;
-//                case "Username not found": // 来自 AuthorizationExceptionTranslator
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH2_INVALID_GRANT_BAD_CREDENTIALS, "账号不存在");
-//                    break;
-//                default:
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH2_INVALID_GRANT, description);
-//                    break;
-//            }
-//        } else if (exception instanceof InvalidTokenException) {
-//            switch (description) {
-//                case "Token was not recognised": // 来自 CheckTokenEndpoint
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH_INVALID_TOKEN_NOT_FOUND, "访问令牌不存在");
-//                    break;
-//                case "Token has expired": // 来自 CheckTokenEndpoint
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH_INVALID_TOKEN_EXPIRED, "账号不存在");
-//                    break;
-//                default:
-//                    ex = new ServiceException(ErrorCodeConstants.OAUTH_INVALID_TOKEN, description);
-//                    break;
-//            }
-//        }
-//        // 默认未知错误
-//        if (ex == null) {
-//            ex = new ServiceException(ErrorCodeConstants.OAUTH2_UNKNOWN, description);
-//        }
-//        // 抛出异常
-//        throw ex;
-//    }
+    /**
+     * 访问令牌过期时间，单位：毫秒
+     */
+    @Value("modules.oauth2-code-service.access-token-expire-time-millis")
+    private int accessTokenExpireTimeMillis;
+    /**
+     * 刷新令牌过期时间，单位：毫秒
+     */
+    @Value("modules.oauth2-code-service.refresh-token-expire-time-millis")
+    private int refreshTokenExpireTimeMillis;
 
     @Autowired
     private UserServiceImpl userService;
@@ -98,14 +71,14 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     @Override
     public OAuth2AuthenticationDTO checkToken(String accessToken) throws ServiceException {
         OAuth2AccessTokenPO accessTokenPO = oauth2AccessTokenMapper.selectByTokenId(accessToken);
-        if (accessTokenPO == null) {
-            throw new ServiceException(-1, "访问令牌不存在"); // TODO 芋艿，处理异常
+        if (accessTokenPO == null) { // 不存在
+            throw ServiceExceptionUtil.exception(ErrorCodeEnum.OAUTH_INVALID_TOKEN_NOT_FOUND.getCode());
         }
-        if (!accessTokenPO.getValid()) {
-            throw new ServiceException(-1, "访问令牌已失效"); // TODO 芋艿，处理异常
+        if (accessTokenPO.getExpiresTime().getTime() > System.currentTimeMillis()) { // 已过期
+            throw ServiceExceptionUtil.exception(ErrorCodeEnum.OAUTH_INVALID_TOKEN_EXPIRED.getCode());
         }
-        if (accessTokenPO.getExpiresTime().getTime() > System.currentTimeMillis()) {
-            throw new ServiceException(-1, "访问令牌已过期"); // TODO 芋艿，处理异常
+        if (!accessTokenPO.getValid()) { // 无效
+            throw ServiceExceptionUtil.exception(ErrorCodeEnum.OAUTH_INVALID_TOKEN_INVALID.getCode());
         }
         // 转换返回
         return new OAuth2AuthenticationDTO().setUid(accessTokenPO.getUid());
@@ -115,7 +88,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
         OAuth2AccessTokenPO accessToken = new OAuth2AccessTokenPO().setTokenId(generateAccessToken())
                 .setRefreshToken(refreshToken)
                 .setUid(uid)
-                .setExpiresTime(new Date(System.currentTimeMillis() + 2 * 24 * 60 * 1000))
+                .setExpiresTime(new Date(System.currentTimeMillis() + accessTokenExpireTimeMillis))
                 .setValid(true);
         oauth2AccessTokenMapper.insert(accessToken);
         return accessToken;
@@ -124,7 +97,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     private OAuth2RefreshTokenPO createOAuth2RefreshToken(Long uid) {
         OAuth2RefreshTokenPO refreshToken = new OAuth2RefreshTokenPO().setTokenId(generateRefreshToken())
                 .setUid(uid)
-                .setExpiresTime(new Date(System.currentTimeMillis() + 30 * 24 * 60 * 1000))
+                .setExpiresTime(new Date(System.currentTimeMillis() + refreshTokenExpireTimeMillis))
                 .setValid(true);
         oauth2RefreshTokenMapper.insert(refreshToken);
         return refreshToken;
