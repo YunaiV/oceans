@@ -58,6 +58,10 @@
         <module>bff</module>
         <module>core</module>
         <module>sys</module>
+        <module>order</module>
+        <module>item</module>
+        <module>pay</module>
+        <module>coupon</module>
     </modules>
 
 
