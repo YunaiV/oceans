@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("cn.iocoder.user.service.dao") // 扫描对应的 Mapper 接口
+@MapperScan("cn.iocoder.oceans.user.service.dao") // 扫描对应的 Mapper 接口
 @EnableTransactionManagement(proxyTargetClass = true) // 启动事务管理。为什么使用 proxyTargetClass 参数，参见 https://blog.csdn.net/huang_550/article/details/76492600
 public class DatabaseConfiguration {
 

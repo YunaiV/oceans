@@ -1,6 +1,6 @@
 package cn.iocoder.oceans.user.api;
 
-import cn.iocoder.occeans.core.exception.ServiceException;
+import cn.iocoder.oceans.core.exception.ServiceException;
 import cn.iocoder.oceans.user.api.dto.UserDTO;
 
 public interface UserService {

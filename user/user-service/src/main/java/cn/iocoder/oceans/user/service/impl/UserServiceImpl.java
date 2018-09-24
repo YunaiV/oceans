@@ -1,6 +1,6 @@
 package cn.iocoder.oceans.user.service.impl;
 
-import cn.iocoder.occeans.core.util.ServiceExceptionUtil;
+import cn.iocoder.oceans.core.util.ServiceExceptionUtil;
 import cn.iocoder.oceans.user.api.UserService;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
 import cn.iocoder.oceans.user.api.dto.UserDTO;

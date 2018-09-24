@@ -1,6 +1,6 @@
 package cn.iocoder.oceans.user.service.impl;
 
-import cn.iocoder.occeans.core.util.ServiceExceptionUtil;
+import cn.iocoder.oceans.core.util.ServiceExceptionUtil;
 import cn.iocoder.oceans.user.api.MobileCodeService;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
 import cn.iocoder.oceans.user.service.dao.MobileCodeMapper;
@@ -20,17 +20,17 @@ public class MobileCodeServiceImpl implements MobileCodeService {
     /**
      * 每条验证码的过期时间，单位：毫秒
      */
-    @Value("modules.mobile-code-service.code-expire-time-millis")
+    @Value("${modules.mobile-code-service.code-expire-time-millis}")
     private int codeExpireTimes;
     /**
      * 每日发送最大数量
      */
-    @Value("modules.mobile-code-service.send-maximum-quantity-per-day")
+    @Value("${modules.mobile-code-service.send-maximum-quantity-per-day}")
     private int sendMaximumQuantityPerDay;
     /**
      * 短信发送频率，单位：毫秒
      */
-    @Value("modules.mobile-code-service.send-frequency")
+    @Value("${modules.mobile-code-service.send-frequency}")
     private int sendFrequency;
 
     @Autowired

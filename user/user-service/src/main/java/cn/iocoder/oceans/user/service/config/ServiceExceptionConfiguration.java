@@ -1,6 +1,6 @@
 package cn.iocoder.oceans.user.service.config;
 
-import cn.iocoder.occeans.core.util.ServiceExceptionUtil;
+import cn.iocoder.oceans.core.util.ServiceExceptionUtil;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Configuration;

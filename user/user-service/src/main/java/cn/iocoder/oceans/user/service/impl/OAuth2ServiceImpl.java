@@ -1,7 +1,7 @@
 package cn.iocoder.oceans.user.service.impl;
 
-import cn.iocoder.occeans.core.exception.ServiceException;
-import cn.iocoder.occeans.core.util.ServiceExceptionUtil;
+import cn.iocoder.oceans.core.exception.ServiceException;
+import cn.iocoder.oceans.core.util.ServiceExceptionUtil;
 import cn.iocoder.oceans.user.api.OAuth2Service;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
 import cn.iocoder.oceans.user.api.dto.OAuth2AccessTokenDTO;
@@ -29,12 +29,12 @@ public class OAuth2ServiceImpl implements OAuth2Service {
     /**
      * 访问令牌过期时间，单位：毫秒
      */
-    @Value("modules.oauth2-code-service.access-token-expire-time-millis")
+    @Value("${modules.oauth2-code-service.access-token-expire-time-millis}")
     private int accessTokenExpireTimeMillis;
     /**
      * 刷新令牌过期时间，单位：毫秒
      */
-    @Value("modules.oauth2-code-service.refresh-token-expire-time-millis")
+    @Value("${modules.oauth2-code-service.refresh-token-expire-time-millis}")
     private int refreshTokenExpireTimeMillis;
 
     @Autowired

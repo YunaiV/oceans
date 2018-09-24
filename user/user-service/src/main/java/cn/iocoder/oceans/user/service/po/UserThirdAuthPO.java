@@ -1,6 +1,6 @@
 package cn.iocoder.oceans.user.service.po;
 
-import cn.iocoder.occeans.core.po.BasePO;
+import cn.iocoder.oceans.core.po.BasePO;
 import cn.iocoder.oceans.user.api.constants.ThirdPlatformConstants;
 
 import java.util.Date;
