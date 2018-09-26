@@ -20,5 +20,9 @@ public abstract class BasePO {
      * 最后更新时间
      */
     private Date lastUpdateTime;
+    /**
+     * 是否删除
+     */
+    private Boolean deleted;
 
 }
