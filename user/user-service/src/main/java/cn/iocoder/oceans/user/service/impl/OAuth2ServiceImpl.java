@@ -74,7 +74,7 @@ public class OAuth2ServiceImpl implements OAuth2Service {
         if (accessTokenPO == null) { // 不存在
             throw ServiceExceptionUtil.exception(ErrorCodeEnum.OAUTH_INVALID_TOKEN_NOT_FOUND.getCode());
         }
-        if (accessTokenPO.getExpiresTime().getTime() > System.currentTimeMillis()) { // 已过期
+        if (accessTokenPO.getExpiresTime().getTime() < System.currentTimeMillis()) { // 已过期
             throw ServiceExceptionUtil.exception(ErrorCodeEnum.OAUTH_INVALID_TOKEN_EXPIRED.getCode());
         }
         if (!accessTokenPO.getValid()) { // 无效

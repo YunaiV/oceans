@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iocoder.oceans.item.service.dao.ItemCategoryMapper">
+
+    <select id="selectListByEnabled" parameterType="Boolean" resultType="ItemCategoryPO">
+      SELECT
+          cid, name, `index`, enabled, create_time
+      FROM item_category
+      <if test="enabled != null">
+          WHERE enabled = #{enabled}
+      </if>
+    </select>
+
+    <select id="selectByCid" parameterType="Long" resultType="ItemCategoryPO">
+        SELECT
+          cid, name, `index`, enabled, create_time
+        FROM item_category
+        WHERE cid = #{cid}
+    </select>
+
+</mapper>

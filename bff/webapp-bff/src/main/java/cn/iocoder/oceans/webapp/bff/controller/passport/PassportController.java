@@ -6,6 +6,7 @@ import cn.iocoder.oceans.user.api.OAuth2Service;
 import cn.iocoder.oceans.user.api.UserService;
 import cn.iocoder.oceans.user.api.constants.ErrorCodeEnum;
 import cn.iocoder.oceans.user.api.dto.OAuth2AccessTokenDTO;
+import cn.iocoder.oceans.webapp.bff.annotation.PermitAll;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class PassportController {
     @Reference
     private MobileCodeService mobileCodeService;
 
+    // TODO 功能：手机密码登陆
 //    @PostMapping("/mobile/pwd/login")
 //    public OAuth2AccessToken mobileLogin(@RequestParam("mobile") String mobile,
 //                                         @RequestParam("password") String password) {
@@ -36,6 +38,7 @@ public class PassportController {
      * @param code 验证码
      * @return 授权信息
      */
+    @PermitAll
     @PostMapping("/mobile/login")
     public OAuth2AccessTokenDTO mobileRegister(@RequestParam("mobile") String mobile,
                                                @RequestParam("code") String code) {
@@ -68,20 +71,28 @@ public class PassportController {
      * @param mobile 手机号
      * @return 无
      */
+    @PermitAll
     @PostMapping("mobile/send")
     public String mobileSend(@RequestParam("mobile") String mobile) {
         mobileCodeService.send(mobile);
         return null;
     }
 
+    // TODO 功能：qq 登陆
+    @PermitAll
     @PostMapping("/qq/login")
     public String qqLogin() {
         return null;
     }
 
+    // TODO 功能：qq 绑定
+    @PermitAll
     @PostMapping("/qq/bind")
     public String qqBind() {
         return null;
     }
 
+    // TODO 功能：刷新 token
+
+    // TODO 功能：退出，销毁 token
 }

@@ -4,6 +4,8 @@ import cn.iocoder.oceans.core.exception.ServiceException;
 import cn.iocoder.oceans.user.api.OAuth2Service;
 import cn.iocoder.oceans.user.api.dto.OAuth2AuthenticationDTO;
 import cn.iocoder.oceans.webapp.bff.annotation.PermitAll;
+import cn.iocoder.oceans.webapp.bff.context.SecurityContext;
+import cn.iocoder.oceans.webapp.bff.context.SecurityContextHolder;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -29,6 +31,9 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         OAuth2AuthenticationDTO authentication = null;
         if (accessToken != null) {
             authentication = oauth2Service.checkToken(accessToken);
+            // 添加到 SecurityContext
+            SecurityContext context = new SecurityContext(authentication.getUid());
+            SecurityContextHolder.setContext(context);
         }
         // 校验是否需要已授权
         HandlerMethod method = (HandlerMethod) handler;
@@ -37,6 +42,12 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
             throw new ServiceException(-1, "未授权");
         }
         return super.preHandle(request, response, handler);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        // 清空 SecurityContext
+        SecurityContextHolder.clear();
     }
 
     private String obtainAccess(HttpServletRequest request) {
