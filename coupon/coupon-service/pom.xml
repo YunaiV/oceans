@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>order</artifactId>
+        <artifactId>coupon</artifactId>
         <groupId>cn.iocoder.oceans</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>order-service</artifactId>
+    <artifactId>coupon-service</artifactId>
 
     <dependencies>
         <dependency>
@@ -21,17 +21,7 @@
 
         <dependency>
             <groupId>cn.iocoder.oceans</groupId>
-            <artifactId>order-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.iocoder.oceans</groupId>
             <artifactId>coupon-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.iocoder.oceans</groupId>
-            <artifactId>item-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
