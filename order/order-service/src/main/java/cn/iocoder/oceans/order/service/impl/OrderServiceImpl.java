@@ -111,7 +111,7 @@ public class OrderServiceImpl implements OrderService {
         // 插入订单明细
         List<OrderItemPO> orderItems = new ArrayList<>();
         // TODO 入库
-        return null;
+        return order;
     }
 
     @Scheduled(fixedRate = 1000) // TODO 未来，需要改成
