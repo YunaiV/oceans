@@ -19,9 +19,9 @@ public class PassportController {
 
     @Reference
     private OAuth2Service oauth2Service;
-    @Reference
+//    @Reference
     private UserService userService;
-    @Reference
+//    @Reference
     private MobileCodeService mobileCodeService;
 
     // TODO 功能：手机密码登陆

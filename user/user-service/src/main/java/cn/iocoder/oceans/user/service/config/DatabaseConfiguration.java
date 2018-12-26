@@ -18,6 +18,10 @@ public class DatabaseConfiguration {
     @Autowired
     private Environment env;
 
+    public DatabaseConfiguration() {
+        System.out.println("创建");
+    }
+
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();

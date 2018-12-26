@@ -62,6 +62,7 @@
         <module>item</module>
         <module>pay</module>
         <module>coupon</module>
+        <module>assembly</module>
     </modules>
 
 

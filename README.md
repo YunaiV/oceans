@@ -90,7 +90,7 @@ Java 各种 O ，也是心烦。
 * TCC 模型：TCC-Transaction、Hmily( How much i love you )
 * XA 模型：Sharding Sphere、MyCAT
 * 2PC 模型：raincat、lcn
-* MQ 模型：RocketMQ
+* MQ 模型：RocketMQ、Myth
 * BED 模型：Sharding Sphere
 * Saga 模型：ServiceComb Saga
 
@@ -105,7 +105,7 @@ Java 各种 O ，也是心烦。
 
 * `cn.iocoder.oceans.order.service.impl.OrderServiceImpl`
 * `cn.iocoder.oceans.order.service.po.OrderPO`
-* `cn.iocoder.oceans.core.base.mq.TransactionMQProducer`
+* `cn.iocoder.oceans.core.base.mq.TransactionMQProducer` 因为觉得官方提供的 TransactionMQProducer ，模板方法太死板，不能返回业务逻辑的结果，所以简单重写了下。
 
 大体流程是：
 
@@ -153,3 +153,8 @@ TODO Sharding Sphere
 TODO Spring Cloud Gateway
 
 # 666. 未完
+
+文末推荐一些项目：
+
+* my-shop ：https://gitee.com/WiliamWang/my-shop 业务写的相对比较完整
+* skr-shop ：https://github.com/skr-shop/manuals 一个只设计，不编码的《电商设计手册》，很给力。

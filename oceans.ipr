@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="assembly" />
         <module name="core" />
         <module name="coupon-api" />
         <module name="coupon-service" />
@@ -24,6 +25,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="assembly" target="1.8" />
       <module name="bff" target="1.8" />
       <module name="bff-dashboard" target="1.5" />
       <module name="common" target="1.8" />
@@ -54,6 +56,7 @@
   </component>
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assembly" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bff" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bff/dashboard-bff" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bff/webapp-bff" charset="UTF-8" />
@@ -101,6 +104,7 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/assembly/assembly.iml" filepath="$PROJECT_DIR$/assembly/assembly.iml" />
       <module fileurl="file://$PROJECT_DIR$/bff/bff.iml" filepath="$PROJECT_DIR$/bff/bff.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/coupon/coupon.iml" filepath="$PROJECT_DIR$/coupon/coupon.iml" />
